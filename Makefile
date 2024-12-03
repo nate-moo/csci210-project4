@@ -4,6 +4,8 @@ rsh: rsh.c
 server: server.c
 	gcc -g -o server -Wall -std=gnu11 server.c
 
+all: rsh server
+
 @PHONY: clean
 
 clean:
