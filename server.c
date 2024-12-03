@@ -31,11 +31,20 @@ int main() {
             continue;
         }
 
+        struct message resp;
+        strcpy(resp.target, req.target);
+        strcpy(resp.source, req.source);
+        strcpy(resp.msg, req.msg);
+
 		printf("Received a request from %s to send the message %s to %s.\n",req.source,req.msg,req.target);
 
         target = open(req.target, O_WRONLY);
         write(target, &req, sizeof (struct message));
         close(target);
+
+        memcpy(resp.target, req.target, 50);
+        memcpy(resp.source, req.source, 50);
+        memcpy(resp.msg, req.msg, 200);
 
 	}
 

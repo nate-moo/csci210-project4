@@ -50,10 +50,10 @@ void* messageListener(void *arg) {
 	// put an end of line at the end of the message
 
     int client;
+    client = open(uName, O_RDONLY);
 
     while (1) {
         struct message msg;
-        client = open(uName, O_RDONLY);
 
         if ((read(client, &msg, sizeof (struct message)) != sizeof (struct message))) {
             continue;
@@ -61,10 +61,9 @@ void* messageListener(void *arg) {
 
         printf("Incoming message from %s: %s\n", msg.source, msg.msg);
 
-        close(client);
-
     }
 
+    close(client);
 	pthread_exit((void*)0);
 }
 
