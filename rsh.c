@@ -50,7 +50,6 @@ void* messageListener(void *arg) {
 	// put an end of line at the end of the message
 
     int client;
-    printf("%s\n", uName);
 
     while (1) {
         struct message msg;
@@ -135,6 +134,8 @@ int main(int argc, char **argv) {
             // if no message is specified, you should print the followingA
             // printf("sendmsg: you have to enter a message\n");
 
+            char line3[256];
+            strcpy(line3, line2);
             char * tokenized = strtok(line2, " ");
             char target[50];
             char msg[300];
@@ -149,7 +150,9 @@ int main(int argc, char **argv) {
                     tokenized = strtok(NULL, " ");
                     continue;
                 } else {
-                    strcpy(msg, tokenized);
+                    //14
+                    memcpy(msg, line3+14, strlen(line3) - 13);
+//                    strcpy(msg, tokenized);
                     strtok(NULL, " ");
                     break;
                 }
